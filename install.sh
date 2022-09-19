@@ -53,9 +53,9 @@ chown nginx:nginx /home/default
 chown -R nginx:nginx /home/*/public_html
 chown -R nginx:nginx /home/*/private_html
 rm -rf /etc/nginx/conf.d/*
-wget http://23.227.184.186/dat96tb/default.conf
+wget https://raw.githubusercontent.com/quyeticb/manga/main/default.conf
 echo -e "y" | mv default.conf /etc/nginx/conf.d/default.conf
-wget http://23.227.184.186/dat96tb/fastcgi_params
+wget https://raw.githubusercontent.com/quyeticb/manga/main/fastcgi_params
 echo -e "y" | mv fastcgi_params /etc/nginx/fastcgi_params
 cd
 rm -Rf *
@@ -86,13 +86,12 @@ systemctl restart php-fpm
 echo "DefaultLimitNOFILE=65000
 DefaultLimitNPROC=65000" >> /etc/systemd/system.conf
 
-echo "/home/default/public_html/
-/home/default/private_html" >> /etc/php.d/opcache-default.blacklist
+echo "/home/default" >> /etc/php.d/opcache-default.blacklist
 
 
-wget http://23.227.184.186/dat96tb/www.conf
+wget https://raw.githubusercontent.com/quyeticb/manga/main/www.conf
 echo -e "y" | mv www.conf /etc/php-fpm.d/www.conf
-wget http://23.227.184.186/dat96tb/nginx.conf
+wget https://raw.githubusercontent.com/quyeticb/manga/main/nginx.conf
 echo -e "y" | mv nginx.conf /etc/nginx/nginx.conf
 systemctl restart php-fpm
 systemctl restart nginx
@@ -118,7 +117,7 @@ sudo ./mariadb_repo_setup
 yum -y install MariaDB-server MariaDB-client mariadb-libs
 
 systemctl restart mysql
-wget -O manga_base.sql http://23.227.184.186/dat96tb/manga_base.sql
+wget -O manga_base.sql https://raw.githubusercontent.com/quyeticb/manga/main/manga_base.sql
 mysql -e 'DROP DATABASE IF EXISTS wm'
 mysql -e 'CREATE DATABASE IF NOT EXISTS wm CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci'
 mysql wm < manga_base.sql
@@ -131,7 +130,7 @@ mysql -e "CREATE USER 'manga'@'localhost' IDENTIFIED BY 'Manga.m';"
 mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'manga'@'localhost' WITH GRANT OPTION;"
 mysql -e "FLUSH PRIVILEGES;"
 
-wget http://23.227.184.186/dat96tb/manga.zip
+wget https://raw.githubusercontent.com/quyeticb/manga/main/manga.zip
 mv manga.zip /home/default/public_html/manga.zip
 cd /home/default/public_html/
 unzip -o manga.zip
@@ -147,7 +146,7 @@ rm -f phpMyAdmin-5.2.0-all-languages.zip
 mv phpMyAdmin-5.2.0-all-languages /home/default/private_html/phpmyadmin
 mkdir /home/default/private_html/phpmyadmin/tmp
 chmod 0777 /home/default/private_html/phpmyadmin/tmp
-wget http://23.227.184.186/build/config.inc.php
+wget https://raw.githubusercontent.com/quyeticb/manga/main/config.inc.php
 echo -e 'y' | mv config.inc.php /home/default/private_html/phpmyadmin/config.inc.php
 firewall-cmd --permanent --zone=public --add-port=5555/tcp
 firewall-cmd --reload
