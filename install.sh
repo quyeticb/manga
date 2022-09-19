@@ -125,7 +125,6 @@ mysql wm < manga_base.sql
 mysql_upgrade --force mysql
 
 systemctl restart mysql.service
-#mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Long.l';"
 mysql -e "CREATE USER 'manga'@'localhost' IDENTIFIED BY 'Manga.m';"
 mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'manga'@'localhost' WITH GRANT OPTION;"
 mysql -e "FLUSH PRIVILEGES;"
