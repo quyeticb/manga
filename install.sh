@@ -91,8 +91,8 @@ echo "/home/default" >> /etc/php.d/opcache-default.blacklist
 
 wget https://raw.githubusercontent.com/quyeticb/manga/main/www.conf
 echo -e "y" | mv www.conf /etc/php-fpm.d/www.conf
-wget https://raw.githubusercontent.com/quyeticb/manga/main/nginx.conf
-echo -e "y" | mv nginx.conf /etc/nginx/nginx.conf
+wget https://raw.githubusercontent.com/quyeticb/manga/main/_nginx.conf
+echo -e "y" | mv _nginx.conf /etc/nginx/nginx.conf
 systemctl restart php-fpm
 systemctl restart nginx
 
