@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2022 at 04:56 AM
+-- Generation Time: Sep 25, 2022 at 12:41 PM
 -- Server version: 10.9.2-MariaDB
 -- PHP Version: 8.1.10
 
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `tbl_chapters`
 --
 
+DROP TABLE IF EXISTS `tbl_chapters`;
 CREATE TABLE `tbl_chapters` (
   `ID` bigint(20) NOT NULL,
   `domain` varchar(64) NOT NULL,
@@ -43,6 +44,7 @@ CREATE TABLE `tbl_chapters` (
 -- Table structure for table `tbl_chats`
 --
 
+DROP TABLE IF EXISTS `tbl_chats`;
 CREATE TABLE `tbl_chats` (
   `ID` bigint(20) NOT NULL,
   `room` varchar(50) NOT NULL,
@@ -58,6 +60,7 @@ CREATE TABLE `tbl_chats` (
 -- Table structure for table `tbl_consts`
 --
 
+DROP TABLE IF EXISTS `tbl_consts`;
 CREATE TABLE `tbl_consts` (
   `ID` bigint(20) NOT NULL,
   `type` varchar(50) DEFAULT NULL,
@@ -77,7 +80,7 @@ INSERT INTO `tbl_consts` (`ID`, `type`, `value`, `text_value`, `comment`) VALUES
 (15, 'work_level', 'normal', 'BÃ¬nh thÆ°á»ng', ''),
 (16, 'work_level', 'easy', 'Dá»…', ''),
 (23, 'manga', 'global', '{\"image_folder\":\"\\/home\\/default\\/public_html\\/data\"}', NULL),
-(24, 'manga', 'manga_leech_config', '{\"domains\":{\"socimg.com\":{\"domain\":\"socimg.com\",\"icon\":\"\\/home\\/default\\/public_html\\/user\\/tools\\/manga\\/data\\/img\\/socimg.com.png\",\"username\":\"test\",\"password\":\"test1100\",\"cdn_uri\":\"https:\\/\\/cdn.socimg.com\",\"post_status\":\"publish\"}},\"sources\":{\"manhwa18.cc\":{\"domain\":\"manhwa18.cc\",\"icon\":\"\\/home\\/default\\/public_html\\/user\\/tools\\/manga\\/data\\/img\\/manhwa18.cc.png\"},\"mangabuddy.com\":{\"domain\":\"mangabuddy.com\",\"icon\":\"\\/home\\/default\\/public_html\\/user\\/tools\\/manga\\/data\\/img\\/mangabuddy.com.png\"},\"webtoon.xyz\":{\"domain\":\"webtoon.xyz\",\"icon\":\"\\/home\\/default\\/public_html\\/user\\/tools\\/manga\\/data\\/img\\/webtoon.xyz.png\"}}}', NULL);
+(24, 'manga', 'manga_leech_config', '{\"domains\":{\"socimg.com\":{\"domain\":\"socimg.com\",\"icon\":\"\\/home\\/default\\/encode\\/user\\/tools\\/manga\\/data\\/img\\/socimg.com.png\",\"username\":\"test\",\"password\":\"test.10\",\"cdn_uri\":\"https:\\/\\/cdn.socimg.com\",\"post_status\":\"publish\",\"auto_update\":\"true\"}},\"sources\":{\"mangabuddy.com\":{\"domain\":\"mangabuddy.com\",\"icon\":\"\\/home\\/default\\/public_html\\/user\\/tools\\/manga\\/data\\/img\\/mangabuddy.com.png\"},\"bato.to\":{\"domain\":\"bato.to\",\"icon\":\"\\/home\\/default\\/public_html\\/user\\/tools\\/manga\\/data\\/img\\/bato.to.png\"}}}', NULL);
 
 -- --------------------------------------------------------
 
@@ -85,6 +88,7 @@ INSERT INTO `tbl_consts` (`ID`, `type`, `value`, `text_value`, `comment`) VALUES
 -- Table structure for table `tbl_data`
 --
 
+DROP TABLE IF EXISTS `tbl_data`;
 CREATE TABLE `tbl_data` (
   `ID` bigint(20) NOT NULL,
   `type` int(11) NOT NULL COMMENT 'tbl_data_type:ID',
@@ -100,6 +104,7 @@ CREATE TABLE `tbl_data` (
 -- Table structure for table `tbl_data_meta`
 --
 
+DROP TABLE IF EXISTS `tbl_data_meta`;
 CREATE TABLE `tbl_data_meta` (
   `ID` bigint(20) NOT NULL,
   `data_id` int(11) NOT NULL COMMENT 'tabl_data:ID',
@@ -116,6 +121,7 @@ CREATE TABLE `tbl_data_meta` (
 -- Table structure for table `tbl_data_source`
 --
 
+DROP TABLE IF EXISTS `tbl_data_source`;
 CREATE TABLE `tbl_data_source` (
   `ID` bigint(20) NOT NULL,
   `data_type` int(11) NOT NULL,
@@ -134,6 +140,7 @@ CREATE TABLE `tbl_data_source` (
 -- Table structure for table `tbl_data_type`
 --
 
+DROP TABLE IF EXISTS `tbl_data_type`;
 CREATE TABLE `tbl_data_type` (
   `ID` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
@@ -152,6 +159,7 @@ CREATE TABLE `tbl_data_type` (
 -- Table structure for table `tbl_files`
 --
 
+DROP TABLE IF EXISTS `tbl_files`;
 CREATE TABLE `tbl_files` (
   `ID` int(11) NOT NULL,
   `file_id` varchar(64) NOT NULL,
@@ -174,6 +182,7 @@ CREATE TABLE `tbl_files` (
 -- Table structure for table `tbl_files_shared`
 --
 
+DROP TABLE IF EXISTS `tbl_files_shared`;
 CREATE TABLE `tbl_files_shared` (
   `ID` int(11) NOT NULL,
   `file_id` bigint(20) NOT NULL COMMENT 'tbl_files:file_id',
@@ -189,6 +198,7 @@ CREATE TABLE `tbl_files_shared` (
 -- Table structure for table `tbl_indexing_history`
 --
 
+DROP TABLE IF EXISTS `tbl_indexing_history`;
 CREATE TABLE `tbl_indexing_history` (
   `ID` bigint(20) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -209,12 +219,13 @@ CREATE TABLE `tbl_indexing_history` (
 -- Table structure for table `tbl_mangas`
 --
 
+DROP TABLE IF EXISTS `tbl_mangas`;
 CREATE TABLE `tbl_mangas` (
   `ID` bigint(20) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` longtext NOT NULL,
-  `poster` varchar(255) NOT NULL,
-  `source_url` varchar(255) NOT NULL,
+  `poster` text NOT NULL,
+  `source_url` text NOT NULL,
   `chapters` longtext NOT NULL,
   `source_id` bigint(20) NOT NULL,
   `genres` text NOT NULL,
@@ -225,9 +236,23 @@ CREATE TABLE `tbl_mangas` (
   `rating_count` int(11) NOT NULL,
   `type` varchar(64) NOT NULL,
   `latest_chapter` varchar(255) NOT NULL,
-  `latest_chapter_url` varchar(255) NOT NULL,
+  `latest_chapter_url` text NOT NULL,
   `update_time` date NOT NULL,
   `total_images` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_manga_logs`
+--
+
+DROP TABLE IF EXISTS `tbl_manga_logs`;
+CREATE TABLE `tbl_manga_logs` (
+  `ID` bigint(20) NOT NULL,
+  `action` varchar(64) NOT NULL,
+  `json` longtext NOT NULL,
+  `log_time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -236,6 +261,7 @@ CREATE TABLE `tbl_mangas` (
 -- Table structure for table `tbl_manga_sites`
 --
 
+DROP TABLE IF EXISTS `tbl_manga_sites`;
 CREATE TABLE `tbl_manga_sites` (
   `ID` int(11) NOT NULL,
   `domain` varchar(64) NOT NULL,
@@ -247,12 +273,20 @@ CREATE TABLE `tbl_manga_sites` (
   `total_images` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_manga_sites`
+--
+
+INSERT INTO `tbl_manga_sites` (`ID`, `domain`, `manga_id`, `wp_manga_id`, `pubdate_time`, `update_time`, `last_chapter`, `total_images`) VALUES
+(69, 'socimg.com', 67, 579, 1664107245, 1664107245, 'Chapter 10.5', 382);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `tbl_manga_update_logs`
 --
 
+DROP TABLE IF EXISTS `tbl_manga_update_logs`;
 CREATE TABLE `tbl_manga_update_logs` (
   `ID` int(11) NOT NULL,
   `run_time` int(11) NOT NULL,
@@ -263,33 +297,13 @@ CREATE TABLE `tbl_manga_update_logs` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_manga_update_logs`
---
-
-INSERT INTO `tbl_manga_update_logs` (`ID`, `run_time`, `domain`, `source_url`, `chapters`, `info`, `status`) VALUES
-(1, 1663347634, 'mangakia.com', '0', '0', '{\"status\":true,\"message\":\"success\",\"total_manga_updates\":0,\"updated_mangas\":[]}', 0),
-(2, 1663519688, 'socimg.com', '0', '0', '{\"status\":true,\"message\":\"success\",\"total_manga_updates\":0,\"updated_mangas\":[]}', 0),
-(3, 1663519691, 'socimg.com', '0', '0', '{\"status\":false,\"error\":\"Manga source not found\"}', 0),
-(4, 1663519692, 'socimg.com', '0', '0', '{\"status\":false,\"error\":\"Manga source not found\"}', 0),
-(5, 1663519703, 'socimg.com', '0', '0', '{\"status\":true,\"message\":\"success\",\"total_manga_updates\":0,\"updated_mangas\":[]}', 0),
-(6, 1663522932, 'socimg.com', '0', '0', '{\"status\":true,\"message\":\"success\",\"total_manga_updates\":1,\"updated_mangas\":[\"https:\\/\\/manhwa18.cc\\/webtoon\\/skirt-of-brothers-wife-raw\"]}', 0),
-(7, 1663523016, 'socimg.com', '0', '0', '{\"status\":true,\"message\":\"success\",\"total_manga_updates\":0,\"updated_mangas\":[]}', 0),
-(8, 1663523022, 'socimg.com', '0', '0', '{\"status\":true,\"message\":\"success\",\"total_manga_updates\":0,\"updated_mangas\":[]}', 0),
-(9, 1663523056, 'socimg.com', '0', '0', '{\"status\":true,\"message\":\"success\",\"total_manga_updates\":1,\"updated_mangas\":[\"https:\\/\\/mangabuddy.com\\/arpeggio-on-sea-surface\"]}', 0),
-(10, 1663523107, 'socimg.com', '0', '0', '{\"status\":false,\"error\":\"This source not available for you\"}', 0),
-(11, 1663523116, 'socimg.com', '0', '0', '{\"status\":true,\"message\":\"success\",\"total_manga_updates\":1,\"updated_mangas\":[\"https:\\/\\/manhwa18.cc\\/webtoon\\/skirt-of-brothers-wife-raw\"]}', 0),
-(12, 1663563001, 'socimg.com', '0', '0', '{\"status\":false,\"error\":\"cURL error 7: Failed to connect to localhost port 80: Connection refused (see https:\\/\\/curl.haxx.se\\/libcurl\\/c\\/libcurl-errors.html)\"}', 0),
-(13, 1663563001, 'socimg.com', '0', '0', '{\"status\":false,\"error\":\"cURL error 7: Failed to connect to localhost port 80: Connection refused (see https:\\/\\/curl.haxx.se\\/libcurl\\/c\\/libcurl-errors.html)\"}', 0),
-(14, 1663563301, 'socimg.com', '0', '0', '{\"status\":false,\"error\":\"Server error: `POST http:\\/\\/localhost\\/ajax` resulted in a `502 Bad Gateway` response:\\n<html>\\r\\n<head><title>502 Bad Gateway<\\/title><\\/head>\\r\\n<body bgcolor=\\\"white\\\">\\r\\n<center><h1>502 Bad Gateway<\\/h1><\\/center>\\r\\n (truncated...)\\n\"}', 0),
-(15, 1663563301, 'socimg.com', '0', '0', '{\"status\":false,\"error\":\"Server error: `POST http:\\/\\/localhost\\/ajax` resulted in a `502 Bad Gateway` response:\\n<html>\\r\\n<head><title>502 Bad Gateway<\\/title><\\/head>\\r\\n<body bgcolor=\\\"white\\\">\\r\\n<center><h1>502 Bad Gateway<\\/h1><\\/center>\\r\\n (truncated...)\\n\"}', 0);
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `tbl_mmo_tools`
 --
 
+DROP TABLE IF EXISTS `tbl_mmo_tools`;
 CREATE TABLE `tbl_mmo_tools` (
   `ID` int(11) NOT NULL,
   `user_id` bigint(20) NOT NULL,
@@ -313,6 +327,7 @@ INSERT INTO `tbl_mmo_tools` (`ID`, `user_id`, `token`, `service`, `expires`, `op
 -- Table structure for table `tbl_projects`
 --
 
+DROP TABLE IF EXISTS `tbl_projects`;
 CREATE TABLE `tbl_projects` (
   `ID` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -338,6 +353,7 @@ CREATE TABLE `tbl_projects` (
 -- Table structure for table `tbl_storage`
 --
 
+DROP TABLE IF EXISTS `tbl_storage`;
 CREATE TABLE `tbl_storage` (
   `ID` int(11) NOT NULL,
   `user_id` int(11) NOT NULL COMMENT 'tbl_users:ID',
@@ -355,6 +371,7 @@ CREATE TABLE `tbl_storage` (
 -- Table structure for table `tbl_users`
 --
 
+DROP TABLE IF EXISTS `tbl_users`;
 CREATE TABLE `tbl_users` (
   `ID` int(11) NOT NULL,
   `type` tinyint(4) NOT NULL COMMENT 'Loại thành viên',
@@ -385,7 +402,7 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`ID`, `type`, `email`, `username`, `password`, `first_name`, `last_name`, `address`, `phone`, `gender`, `dob`, `avatar`, `last_login`, `last_activity`, `logout_time`, `biography`, `url`, `language`, `social`, `other_infomations`, `create_time`, `update_time`) VALUES
-(4, 3, 'admin@domain.com', 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 'admin', NULL, '', '', NULL, '2022-10-09 00:00:00', '/img/avatars/4.jpg', '2022-09-19 04:56:05', '[\"2022-09-13T02:48:04.018Z\",\"\\/\"]', NULL, '<p><br></p>', '', NULL, 'null', NULL, '2022-09-10 16:39:11', '2022-09-19 04:56:01');
+(4, 3, 'admin@domain.com', 'admin', '3d47546357e9e41e791f104bb59d725c', 'admin', NULL, '', '', NULL, '2022-10-09 00:00:00', '/img/avatars/4.jpg', '2022-09-25 11:52:12', '[\"2022-09-13T02:48:04.018Z\",\"\\/\"]', NULL, '<p><br></p>', '', NULL, 'null', NULL, '2022-09-10 16:39:11', '2022-09-25 10:01:14');
 
 -- --------------------------------------------------------
 
@@ -393,6 +410,7 @@ INSERT INTO `tbl_users` (`ID`, `type`, `email`, `username`, `password`, `first_n
 -- Table structure for table `tbl_works`
 --
 
+DROP TABLE IF EXISTS `tbl_works`;
 CREATE TABLE `tbl_works` (
   `ID` int(11) NOT NULL,
   `project_id` bigint(20) NOT NULL,
@@ -423,6 +441,7 @@ CREATE TABLE `tbl_works` (
 -- Table structure for table `tbl_work_assign`
 --
 
+DROP TABLE IF EXISTS `tbl_work_assign`;
 CREATE TABLE `tbl_work_assign` (
   `ID` bigint(20) NOT NULL,
   `work_id` bigint(20) NOT NULL,
@@ -439,6 +458,7 @@ CREATE TABLE `tbl_work_assign` (
 -- Table structure for table `tbl_work_comments`
 --
 
+DROP TABLE IF EXISTS `tbl_work_comments`;
 CREATE TABLE `tbl_work_comments` (
   `ID` bigint(20) NOT NULL,
   `work_id` bigint(20) NOT NULL,
@@ -455,6 +475,7 @@ CREATE TABLE `tbl_work_comments` (
 -- Table structure for table `tbl_work_data`
 --
 
+DROP TABLE IF EXISTS `tbl_work_data`;
 CREATE TABLE `tbl_work_data` (
   `ID` bigint(20) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -469,6 +490,7 @@ CREATE TABLE `tbl_work_data` (
 -- Table structure for table `tbl_work_files`
 --
 
+DROP TABLE IF EXISTS `tbl_work_files`;
 CREATE TABLE `tbl_work_files` (
   `ID` bigint(20) NOT NULL,
   `project_id` bigint(20) NOT NULL,
@@ -491,6 +513,7 @@ CREATE TABLE `tbl_work_files` (
 -- Table structure for table `tbl_work_meta`
 --
 
+DROP TABLE IF EXISTS `tbl_work_meta`;
 CREATE TABLE `tbl_work_meta` (
   `ID` int(11) NOT NULL,
   `work_data_id` bigint(11) NOT NULL COMMENT 'tbl_workds:ID',
@@ -504,6 +527,7 @@ CREATE TABLE `tbl_work_meta` (
 -- Table structure for table `tbl_work_type`
 --
 
+DROP TABLE IF EXISTS `tbl_work_type`;
 CREATE TABLE `tbl_work_type` (
   `ID` int(11) NOT NULL,
   `work_group` varchar(255) NOT NULL,
@@ -647,15 +671,22 @@ ALTER TABLE `tbl_indexing_history`
 --
 ALTER TABLE `tbl_mangas`
   ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `source_url` (`source_url`),
   ADD UNIQUE KEY `source_id` (`source_id`),
   ADD KEY `rating` (`rating`),
   ADD KEY `rating_count` (`rating_count`),
   ADD KEY `type` (`type`),
   ADD KEY `latest_chapter` (`latest_chapter`),
-  ADD KEY `latest_chapter_url` (`latest_chapter_url`),
   ADD KEY `update_time` (`update_time`),
   ADD KEY `total_images` (`total_images`);
+
+--
+-- Indexes for table `tbl_manga_logs`
+--
+ALTER TABLE `tbl_manga_logs`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `action` (`action`),
+  ADD KEY `log_time` (`log_time`);
+ALTER TABLE `tbl_manga_logs` ADD FULLTEXT KEY `json` (`json`);
 
 --
 -- Indexes for table `tbl_manga_sites`
@@ -906,16 +937,22 @@ ALTER TABLE `tbl_mangas`
   MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tbl_manga_logs`
+--
+ALTER TABLE `tbl_manga_logs`
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tbl_manga_sites`
 --
 ALTER TABLE `tbl_manga_sites`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `tbl_manga_update_logs`
 --
 ALTER TABLE `tbl_manga_update_logs`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_mmo_tools`
